@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Cardio 💪💪</title>
+</head>
+<body>
+  <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+
+  <button type="button" id="some">1. At Least One Person Over 19</button><br>
+  <button type="button" id="every">2. Is Everyone Over 19</button><br>
+  <button type="button" id="find">3. Find ID 823423</button><br>
+  <button type="button" id="findIndex">4. Delete Comment for 823423</button><br><br>
+
+  <div id="output"></div>
+
+  <script>
+    // ## Array Cardio Day 2
+
+    const people = [
+      { name: 'Wes', year: 1988 },
+      { name: 'Kait', year: 1986 },
+      { name: 'Irv', year: 1970 },
+      { name: 'Lux', year: 2015 }
+    ];
+
+    const comments = [
+      { text: 'Love this!', id: 523423 },
+      { text: 'Super good', id: 823423 },
+      { text: 'You are the best', id: 2039842 },
+      { text: 'Ramen is my fav food ever', id: 123523 },
+      { text: 'Nice Nice Nice!', id: 542328 }
+    ];
+
+    // Some and Every Checks
+    // Array.prototype.some() // is at least one person 19 or older?
+
+    const button1 = document.getElementById("some");
+    button1.addEventListener('click', some);
+    function some() {
+      const currentYear = 2021;
+
+      let isOver19 = people.some(function(person) {
+        return (currentYear - person.year) >= 19;
+      })
+      //console.log(isOver19);
+      let myString = "Is at least one person 19 or older? Answer: " + isOver19;
+      document.getElementById("output").innerHTML = myString;
+    }
+
+
+    // Array.prototype.every() // is everyone 19 or older?
+
+    const button2 = document.getElementById("every");
+    button2.addEventListener('click', every);
+    function every() {
+      const currentYear = 2021;
+
+      let allOver19 = people.every(function (person) {
+        return (currentYear - person.year) >= 19;
+      });
+      //console.log(allOver19);
+      let myString = "Is everyone 19 or older? Answer: " + allOver19;
+      document.getElementById("output").innerHTML = myString;
+    }
+
+    // Array.prototype.find()
+    // Find is like filter, but instead returns just the one you are looking for
+    // find the comment with the ID of 823423
+
+    const button3 = document.getElementById("find");
+    button3.addEventListener('click', findID);
+    function findID() {
+
+      let idFound = comments.find(function (comment) {
+        return comment.id == 823423;
+      })
+
+      //console.log(idFound);
+      let myString = "ID: " + idFound.id + ", Comment: " + idFound.text;
+      document.getElementById("output").innerHTML = myString;
+    }
+
+
+    // Array.prototype.findIndex()
+    // Find the comment with this ID
+    // delete the comment with the ID of 823423
+
+    const button4 = document.getElementById("findIndex");
+    button4.addEventListener('click', findIDIndex);
+    function findIDIndex() {
+
+      let myIndex = comments.findIndex(function (comment) {
+        return comment.id == 823423;
+      })
+
+      console.log(myIndex);
+      delete comments[myIndex].text;
+      console.log(comments);
+      let myString = "ID: " + comments[myIndex].id + ", Comment: " + comments[myIndex].text;
+      document.getElementById("output").innerHTML = myString;
+    }
+
+  </script>
+</body>
+</html>
