@@ -11,11 +11,11 @@ function boxClicked(e) {
     if (!(id in gameState)) {
         gameState[id] = player;
         e.target.innerHTML = player;
-        if (playerWon()) {
+        if (win()) {
           display.innerText = "Winner: " + player;
           return;
         }
-        if (playerDraw()) {
+        if (draw()) {
           return;
         }
         if (player === firstPlayer) {
@@ -27,7 +27,7 @@ function boxClicked(e) {
     console.log(gameState);
 }
 
-function playerWon () {
+function win() {
     if (gameState[0] === player) {
       if (gameState[1] === player && gameState[2] === player) {
         return true;
@@ -60,9 +60,9 @@ function playerWon () {
     }
 };
 
-function playerDraw() {
+function draw() {
     let draw = 0;
-    gameState.forEach((space, i) => {
+    gameState.forEach((cell, i) => {
       if (gameState[i] !== null) draw++;
     });
     if (draw === 9) {
