@@ -74,6 +74,7 @@ function resetBoard() {
     console.dir(board);
     gameState = [];
     display.innerText = "";
+    player = firstPlayer;
     for (let i = 0; i < board.rows.length; i++) {
         let row = board.rows[i];
         for (let j = 0; j < row.cells.length; j++) {
