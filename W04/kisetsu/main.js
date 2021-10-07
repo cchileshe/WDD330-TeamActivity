@@ -82,5 +82,5 @@ function resetBoard() {
     }
 }
 
-board.addEventListener('click', boxClicked);
-button.addEventListener('click', resetBoard);
+board.addEventListener("touchend", boxClicked);
+button.addEventListener("touchend", resetBoard);
