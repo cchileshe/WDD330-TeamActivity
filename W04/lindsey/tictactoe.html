@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <h2>Tic Tac Toe - Group 4</h2>
+    </header>
+    <main>
+      <button type="button" id="start">Start the Game</button>
+      <button type="button" id="reset">Reset</button>
+      <div id="output"></div>
+      <table id='table'>
+        <tr>
+          <td class="cell right bottom vert_left horiz_top diag_down" id="0"></td>
+          <td class="cell left right bottom vert_middle horiz_top" id="1"></td>
+          <td class="cell bottom left vert_right horiz_top diag_up" id="2"></td></tr>
+        <tr>
+          <td class="cell top right bottom vert_left horiz_middle" id="3"></td>
+          <td class="cell left top right bottom vert_middle horiz_middle diag_down diag_up" id="4"></td>
+          <td class="cell left top bottom vert_right horiz_middle" id="5"></td></tr>
+        <tr>
+          <td class="cell top right vert_left horiz_bottom diag_up" id="6"></td>
+          <td class="cell left top right vert_middle horiz_bottom" id="7"></td>
+          <td class="cell left top vert_right horiz_bottom diag_down" id="8"></td></tr>
+      </table>
+    </main>
+    <script src="java.js"></script>
+  </body>
+</html>
