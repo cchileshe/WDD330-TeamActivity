@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+img {
+    max-width: 100%;
+}
+h1 {
+    font-size: 2.5em;
+    background-color: rgb(92, 205, 167);
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 0;
+}
+.hikeStyles {
+    padding: 0;
+    list-style-type: none;
+    margin-top: 0;
+}
+.hikeStyles h2 {
+    background-color: rgb(163, 221, 166);
+    margin-bottom: 0.5em;
+    padding: 1em 0 1em 0;
+    text-align: center;
+}
+.light {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.light div {
+    width: 40%;
+    margin-left: 1em;
+    flex: 1 1 auto;
+}
+.light h2 {
+    width: 100%;
+    flex: 1 0 auto;
+}
+.light h3 {
+    margin-bottom: -0.5em;
+}
+.full h3, p{
+    padding: 0 1em 0 1em;
+}
+.full h3 {
+    margin-bottom: -0.5em;
+}
+button {
+    margin: 1em .5em 0 1em;
+    background-color: rgb(92, 205, 167);
+    padding: .8em 1em .8em 1em;
+    border-radius: .2em;
+    border: none;
+}
