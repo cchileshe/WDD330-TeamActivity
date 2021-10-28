@@ -1,3 +1,5 @@
+import Comments from './comments.js';
+
 //create an array of hikes
 const hikeList = [
   {
@@ -64,6 +66,8 @@ export default class Hikes {
     this.parentElement.innerHTML = "";
     this.parentElement.appendChild(renderOneHikeFull(hike));
     this.backButton.classList.remove('hidden');
+
+    let myComments = new Comments("hike_comments");
   }
 
   addHikeListener() {
@@ -127,6 +131,18 @@ function renderOneHikeFull(hike) {
     <div>
       <h3>How to Get There:</h3>
       <p>${hike.directions}</p>
-    </div>`;
+    </div>
+    <br><br>
+    <form>
+      <h4>Add a Comment:</h4>
+      <label for="comment_name">Comment Name:</label>
+      <input id="comment_name" type="text"><br>
+      <label for="comment_content">Comment:</label>
+      <textarea id="comment_content" type="text"></textarea><br>
+      <button type="button" id="submit_comment">Submit</button>
+    </form>
+    <h2>Comments: </h2>
+    <ul id='hike_comments'></ul>`;
   return item;
 }
+
