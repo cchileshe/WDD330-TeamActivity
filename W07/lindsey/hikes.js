@@ -1,4 +1,4 @@
-import Comments from './comments.js';
+import Comment from './comments.js';
 
 //create an array of hikes
 const hikeList = [
@@ -42,10 +42,15 @@ export default class Hikes {
   constructor(elementId) {
     this.parentElement = document.getElementById(elementId);
     this.backButton = this.buildBackButton();
+    this.commentHandler = new Comment("hike", "all_comments");
   }
 
   getAllHikes() {
     return hikeList;
+  }
+
+  getHikeByName(hikeName) {
+    return this.getAllHikes().find(hike => hike.name === hikeName);
   }
 
   getOneHike(hikeName) {
@@ -59,15 +64,17 @@ export default class Hikes {
     });
     this.addHikeListener();
     this.backButton.classList.add('hidden');
+    document.getElementById('comment_form').innerHTML = '';
+    this.commentHandler.showAllComments();
   }
 
   showOneHike(hikeName) {
     const hike = this.getOneHike(hikeName);
     this.parentElement.innerHTML = "";
     this.parentElement.appendChild(renderOneHikeFull(hike));
+    this.commentHandler.showAllComments(hikeName);
+    this.commentHandler.addCommentListener(hikeName);
     this.backButton.classList.remove('hidden');
-
-    let myComments = new Comments("hike_comments");
   }
 
   addHikeListener() {
@@ -131,18 +138,7 @@ function renderOneHikeFull(hike) {
     <div>
       <h3>How to Get There:</h3>
       <p>${hike.directions}</p>
-    </div>
-    <br><br>
-    <form>
-      <h4>Add a Comment:</h4>
-      <label for="comment_name">Comment Name:</label>
-      <input id="comment_name" type="text"><br>
-      <label for="comment_content">Comment:</label>
-      <textarea id="comment_content" type="text"></textarea><br>
-      <button type="button" id="submit_comment">Submit</button>
-    </form>
-    <h2>Comments: </h2>
-    <ul id='hike_comments'></ul>`;
+    </div>`;
   return item;
 }
 
