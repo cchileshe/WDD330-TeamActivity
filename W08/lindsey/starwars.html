@@ -12,15 +12,20 @@
 
   <body>
     <main>
-      <h3>Your STAR WARS Headquarters!</h3>
-      <button type="button" id="people_button">Load Characters</button>
-      <div id="output">
+      <div class="list_output">
+        <h2>STAR WARS Characters</h2>
         <ul id="character_list"></ul>
-        <button id="previous_button" class="hidden">Previous</button>
-        <button id="next_button" class="hidden">Next</button>
       </div>
+      
+      <footer>
+        <button id="previous_button"  >Previous</button>
+        <div id="page_buttons" class="inline"></div>
+        <button id="next_button" >Next</button>
+      </footer>
+        
+      
     </main>
 
-    <script src="./java.js" type="module"></script>
+    <script src="java.js"></script>
   </body>
 </html>

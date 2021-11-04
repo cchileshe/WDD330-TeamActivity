@@ -1,16 +1,3 @@
-import CharacterHandler from "./character_handler.js";
-import Character from "./character.js";
-
-
-
-const view = {
-  parentElement: document.getElementById("character_list"),
-  loadButton: document.getElementById("people_button"),
-  nextButton: document.getElementById("next_button"),
-  previousButton: document.getElementById("previous_button")
-}
-
-view.loadButton.addEventListener("click", loadCharacters('https://swapi.dev/api/people/'));
 
 async function getAPI(url) {
   try {
@@ -25,48 +12,43 @@ async function getAPI(url) {
 
 async function loadCharacters(url="https://swapi.dev/api/people/") {
   let myData = await getAPI(url);
-  let newCharacterList = [];
-  myData.results.forEach(character => {
-    let myCharacter = new Character(character);
-    newCharacterList.push(myCharacter)
-  });
-  let myCharacterHandler = new CharacterHandler(myData.count, myData.next, myData.previous, newCharacterList);
-  console.log(myCharacterHandler);
-  renderCharacters(myCharacterHandler.character_list);
-  console.log(myCharacterHandler.character_list);
-  renderCharacters(myCharacterHandler.character_list);
-  renderNextButtons(myCharacterHandler.nextURL);
-  renderPreviousButton(myCharacterHandler.previousURL);
-  
-}
+  renderCharacters(myData.results);
+  //console.log(myData);
+  const next = document.getElementById("next_button");
+  const prev = document.getElementById("previous_button");
 
-function renderNextButtons(nextUrl) {
-  if (nextUrl) {
-    view.nextButton.classList.remove("hidden");
-    //view.nextButton.setAttribute("onclick", ));
+  if (myData.next != null) {  
+    next.classList.remove("hidden")
+    next.onclick = () => {
+      loadCharacters(myData.next);
+    }
   } else {
-    view.nextButton.classList.add("hidden");
-    view.nextButton.removeAttribute("onclick");
+    next.classList.add("hidden");
   }
-}
 
-function renderPreviousButton(previousUrl) {
-  if (previousUrl) {
-    view.previousButton.classList.remove("hidden");
-    //view.previousButton.setAttribute("onclick", );
+  if (myData.previous != null) {
+    prev.classList.remove("hidden");
+    prev.onclick = () => {
+      loadCharacters(myData.previous);
+    }
   } else {
-    view.previousButton.classList.add("hidden");
-    view.previousButton.removeAttribute("onclick");
+    prev.classList.add("hidden");
+  }
+
+  if (myData.count > 10) {
+    //console.log(myData);
+    showPages(myData.count);
   }
 }
 
 function renderCharacters(characterList) {
-  let list = view.parentElement;
-  view.parentElement.innerHTML = "";
+  let list = document.getElementById("character_list");
+  list.innerHTML = "";
   characterList.forEach(character => {
     let item = document.createElement("li");
     item.classList.add("character");
-    item.innerHTML = `<h3>${character.name}`;
+    item.innerHTML = `<h3>${character.name}</h3>
+    <ul id='${character.name}details'></ul>`;
 
     item.addEventListener("click", function (event) {
       event.preventDefault();
@@ -76,3 +58,43 @@ function renderCharacters(characterList) {
   })
 }
 
+async function getCharacterDetails(url) {
+  let character = await getAPI(url);
+  renderCharacterDetails(character);
+}
+
+function renderCharacterDetails(character) {
+  let detailOutput = document.getElementById(`${character.name}details`);
+  if (detailOutput.innerHTML === "") {
+    detailOutput.innerHTML = `<li>Birth Year: ${character.birth_year}</li>
+      <li>Eye Color: ${character.eye_color}</li>
+      <li>Gender: ${character.gender}</li>
+      <li>Hair Color: ${character.hair_color}</li>
+      <li>Height: ${character.height}</li>`;
+  } else {
+    detailOutput.innerHTML = "";
+  }
+  
+}
+
+function showPages(count) {
+  const pagesOutput = document.getElementById("page_buttons");
+  pagesOutput.innerHTML = "";
+  let numPages = Math.ceil(count / 10);
+  //console.log(numPages);
+
+  for (let i = 1; i <= numPages; i++) {
+    let item = document.createElement("span");
+    item.classList.add("page_span");
+    if (i < numPages) item.innerHTML = `${i} - `;
+    else item.innerHTML = `${i}`;
+
+    item.addEventListener("click", function (event) {
+      event.preventDefault();
+      loadCharacters(`https://swapi.dev/api/people/?page=${i}`);
+    });
+    pagesOutput.appendChild(item);
+  }
+}
+
+loadCharacters();
