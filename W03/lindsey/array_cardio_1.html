@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Array Cardio 💪</title>
+  </head>
+  <body>
+    <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+
+    <button type="button" id="1">1. Inventors Born in the 1500s</button><br>
+    <button type="button" id="2">2. Inventors First and Last Names</button><br>
+    <button type="button" id="3">3. Inventors Oldest to Youngest</button><br>
+    <button type="button" id="4">4. Inventors With Ages</button><br>
+    <button type="button" id="5">5. Inventors Sorted By Age</button><br>
+    <button type="button" id="6">6. Boulevards</button><br>
+    <button type="button" id="7">7. People Sorted By Name</button><br>
+    <button type="button" id="8">8. Instances of Transport</button><br>
+
+    <br>
+    <div id="output"></div>
+
+    <script>
+      // Get your shorts on - this is an array workout!
+      // ## Array Cardio Day 1
+
+      // Some data we can work with
+
+      const inventors = [
+        { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+        { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+        { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+        { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+        { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+        { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+        { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+        { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
+        { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
+        { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
+        { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+        { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
+      ];
+
+      const people = [
+        'Beck, Glenn',
+        'Becker, Carl',
+        'Beckett, Samuel',
+        'Beddoes, Mick',
+        'Beecher, Henry',
+        'Beethoven, Ludwig',
+        'Begin, Menachem',
+        'Belloc, Hilaire',
+        'Bellow, Saul',
+        'Benchley, Robert',
+        'Benenson, Peter',
+        'Ben-Gurion, David',
+        'Benjamin, Walter',
+        'Benn, Tony',
+        'Bennington, Chester',
+        'Benson, Leana',
+        'Bent, Silas',
+        'Bentsen, Lloyd',
+        'Berger, Ric',
+        'Bergman, Ingmar',
+        'Berio, Luciano',
+        'Berle, Milton',
+        'Berlin, Irving',
+        'Berne, Eric',
+        'Bernhard, Sandra',
+        'Berra, Yogi',
+        'Berry, Halle',
+        'Berry, Wendell',
+        'Bethea, Erin',
+        'Bevan, Aneurin',
+        'Bevel, Ken',
+        'Biden, Joseph',
+        'Bierce, Ambrose',
+        'Biko, Steve',
+        'Billings, Josh',
+        'Biondo, Frank',
+        'Birrell, Augustine',
+        'Black, Elk',
+        'Blair, Robert',
+        'Blair, Tony',
+        'Blake, William'
+      ];
+
+      // Array.prototype.filter()
+      // 1. Filter the list of inventors for those who were born in the 1500's
+
+      const button1 = document.getElementById("1");
+
+      button1.addEventListener('click', inventors1500);
+      function inventors1500() {
+        const born1500s = inventors.filter(function(inventor) {
+          return inventor.year < 1600 && inventor.year > 1499;
+        });
+
+        let myString = "";
+        for (let i = 0; i < born1500s.length; i++) {
+          myString += born1500s[i].first + " " + born1500s[i].last + ", " + born1500s[i].year + " - " + born1500s[i].passed + "<br>";
+        }
+        document.getElementById("output").innerHTML = myString;
+      }
+
+      // Array.prototype.map()
+      // 2. Give us an array of the inventors' first and last names
+
+      const button2 = document.getElementById("2");
+
+      button2.addEventListener('click', inventorsFirstLast);
+
+      function inventorsFirstLast() {
+        const inventorsFL = inventors.map(function (inventor) {
+          return inventor.first + " " + inventor.last;
+        });
+
+        let myString = "";
+        for (let i = 0; i < inventorsFL.length; i++) {
+          myString += inventorsFL[i] + "<br>";
+        }
+        document.getElementById("output").innerHTML = myString;
+      }
+
+      // Array.prototype.sort()
+      // 3. Sort the inventors by birthdate, oldest to youngest
+
+      const button3 = document.getElementById("3");
+
+      button3.addEventListener('click', inventorsOldestYoungest);
+
+      function inventorsOldestYoungest() {
+        const inventorsOldToYoung = inventors.sort(function (a, b) {
+          return a.year-b.year;
+        })
+        //console.log(inventorsOldToYoung);
+
+        let myString = "";
+        for (let i = 0; i < inventorsOldToYoung.length; i++) {
+          myString += inventorsOldToYoung[i].first + " " + inventorsOldToYoung[i].last + ", Born " + inventorsOldToYoung[i].year + "<br>";
+        }
+        document.getElementById("output").innerHTML = myString;
+      }
+
+      // Array.prototype.reduce()
+      // 4. How many years did all the inventors live?
+
+      const button4 = document.getElementById("4");
+
+      button4.addEventListener('click', inventorsAge);
+
+      function inventorsAge() {
+        let myString = "";
+
+        for (let i = 0; i < inventors.length; i++) {
+          let ages = [inventors[i].year, inventors[i].passed];
+          const inventorAge = ages.reduce(function (passed, year) {
+            return year - passed;
+          })
+          myString += inventors[i].first + " " + inventors[i].last + ", Age at Death: " + inventorAge + "<br>";
+        }
+        document.getElementById("output").innerHTML = myString;
+      }
+
+      // 5. Sort the inventors by years lived
+
+      const button5 = document.getElementById("5");
+
+      button5.addEventListener('click', inventorsSortAge);
+
+      function inventorsSortAge() {
+        let myString = "";
+        let newArray = [];
+
+        for (let i = 0; i < inventors.length; i++) {
+          let ages = [inventors[i].year, inventors[i].passed];
+          const inventorAge = ages.reduce(function (passed, year) {
+            return year - passed;
+          })
+          newArray.push({first : inventors[i].first, last : inventors[i].last, age : inventorAge});
+        }  
+          
+        newArray.sort(function (a, b) {
+          return b.age - a.age;
+        });
+
+        for (let i = 0; i < newArray.length; i++) {
+          myString += newArray[i].first + " " + newArray[i].last + ", Age at Death: " + newArray[i].age + "<br>";
+        }
+        
+        //console.log(newArray);
+        document.getElementById("output").innerHTML = myString;
+      }
+
+      // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+      // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      // goto the link above and open the console. Paste the following two lines in.  That will create a list of links in memory that you can reference through the console. Use that list to finish the problem.
+      // const category = document.querySelector('.mw-category');
+      // const links = Array.from(category.querySelectorAll('a'));
+      const boulevards = [
+      "Boulevards of the Marshals",
+      "Boulevard Auguste-Blanqui",
+      "Boulevard Barbès",
+      "Boulevard Beaumarchais",
+      "Boulevard de l'Amiral-Bruix",
+      "Boulevard Mortier",
+      "Boulevard Poniatowski",
+      "Boulevard Soult",
+      "Boulevard des Capucines",
+      "Boulevard de la Chapelle",
+      "Boulevard de Clichy",
+      "Boulevard du Crime",
+      "Boulevard du Général-d'Armée-Jean-Simon",
+      "Boulevard Haussmann",
+      "Boulevard de l'Hôpital",
+      "Boulevard des Italiens",
+      "Boulevard Lefebvre",
+      "Boulevard de la Madeleine",
+      "Boulevard de Magenta",
+      "Boulevard Malesherbes",
+      "Boulevard Marguerite-de-Rochechouart",
+      "Boulevard Montmartre",
+      "Boulevard du Montparnasse",
+      "Boulevard Raspail",
+      "Boulevard Richard-Lenoir",
+      "Boulevard Saint-Germain",
+      "Boulevard Saint-Michel",
+      "Boulevard de Sébastopol",
+      "Boulevard de Strasbourg",
+      "Boulevard du Temple",
+      "Boulevard Voltaire",
+      "Boulevard de la Zone"
+      ];
+
+      const button6 = document.getElementById("6");
+      button6.addEventListener("click", sortBoulevards);
+
+      function sortBoulevards() {
+        let value = 'de';
+        
+        let el = boulevards.filter(function(boulevard) {
+          return boulevard.includes(value);
+        });
+        
+        console.log(el);
+      }
+
+      // 7. sort Exercise
+      // Sort the people alphabetically by last name
+
+      const button7 = document.getElementById("7");
+
+      button7.addEventListener("click", sortPeople);
+
+      function sortPeople() {
+        let newArray = [];
+        let myString = "";
+
+        people.forEach(person => {
+          let personObject = person.split(", ")
+          personObject[0] = "last: " + personObject[0];
+          personObject[1] = "first: " + personObject[1];
+          let tmp1 = personObject[0].split(": ");
+          let tmp2 = personObject[1].split(": ");
+          let personArray = [];
+          personArray[tmp1[0]] = tmp1[1];
+          personArray[tmp2[0]] = tmp2[1];
+          
+          newArray.push(personArray);
+          //console.log(personArray);
+        });
+        newArray.sort(function (a, b) {
+          if (a.last < b.last) {
+            return -1;
+          }
+          if (a.last > b.last) {
+            return 1;
+          }
+          return 0;
+        })
+        for (let i = 0; i < newArray.length; i++) {
+          myString += newArray[i].last + " " + newArray[i].first + "<br>";
+        }
+
+        document.getElementById("output").innerHTML = myString;
+
+        //console.log(newArray);
+      }
+
+      // 8. Reduce Exercise
+      // Sum up the instances of each of these
+      const data = [
+        'car',
+        'car',
+        'truck',
+        'truck',
+        'bike',
+        'walk',
+        'car',
+        'van',
+        'bike',
+        'walk',
+        'car',
+        'van',
+        'car',
+        'truck'
+      ];
+
+      const button8 = document.getElementById("8");
+
+      button8.addEventListener('click', tallyTotals);
+
+      function tallyTotals() {
+        let myString = "";
+        
+        let initialValue = {};
+        let reducer = function(tally, count) {
+          if(!tally[count]) {
+            tally[count] = 1;
+          } else {
+            tally[count] = tally[count] + 1;
+          }
+          return tally;
+        }
+        let result = data.reduce(reducer, initialValue);
+        
+        myString += "Car: " + result.car + "<br>Truck: " + result.truck + "<br>Bike: " + 
+          result.bike + "<br>Walk: " + result.walk + "<br>Van: " + result.van;
+
+        document.getElementById("output").innerHTML = myString;
+        
+        //console.log(result);
+      }
+
+    </script>
+  </body>
+</html>
