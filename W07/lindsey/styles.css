@@ -54,3 +54,8 @@ li.light :nth-child(3) {
 button {
   margin-left: 2em;
 }
+
+.comment_section {
+  padding: 1em;
+}
+
