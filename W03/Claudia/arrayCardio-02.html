@@ -102,7 +102,7 @@
         console.log(yearsAgo);
 
       // 5. Sort the inventors by years lived
-      const yearsLived = inventors.sore(function (a, b) {
+      const yearsLived = inventors.sort(function (a, b) {
             const lastInventor = a.pass - a.year;
             const nextInventor = b.passed - b.year;
             return lastInventor > nextInventor ? -1 : 1;
