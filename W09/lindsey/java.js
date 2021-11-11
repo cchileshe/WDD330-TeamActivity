@@ -1,73 +1,40 @@
-/*function removeTransition(e) {
-  if (e.propertyName !== 'transform') return;
-  e.target.classList.remove('playing');
-}
 
-function playSound(e) {
-  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-  if (!audio) return;
-
-  key.classList.add('playing');
-  audio.currentTime = 0;
-  audio.play();
-}
-
-const keys = Array.from(document.querySelectorAll('.key'));
-keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-window.addEventListener('keydown', playSound);*/
-
+let myKeyCounts = {'A':0, 'S':0, 'D':0, 'F':0, 'G':0, 'H':0, 'J':0, 'K':0, 'L':0};
 
 document.addEventListener("keydown", function(e) {
-  var myCode = e.keyCode;
-  //let myKey = document.querySelector(`div[data-key="${myCode}"]`);
-  let myAudio = document.querySelector(`audio[data-key="${myCode}"]`);
+  let myKey = document.querySelector(`div[data-key="${e.keyCode}"]`);
+  let myAudio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
   if (myAudio != null) {
+    myAudio.currentTime = 0;
     myAudio.play();
+    myKey.classList.add('playing');
   }
-  
-
-  
-
-  /*switch (myKey) {
-    case 'a':
-      let audioSrc = document.querySelector(`audio[data-key="${e.code}"]`).src;
-      let audioA = new Audio(audioSrc);
-      audioA.play();
-      break;
-    case 's':
-      let audioS = new Audio('sounds/hihat.wav');
-      audioS.play();
-      break;
-    case 'd':
-      let audioD = new Audio('sounds/kick.wav');
-      audioD.play();
-      break;
-    case 'f':
-      let audioF = new Audio('sounds/openhat.wav');
-      audioF.play();
-      break;
-    case 'g':
-      let audioG = new Audio('sounds/boom.wav');
-      audioG.play();
-      break;
-    case 'h':
-      let audioH = new Audio('sounds/ride.wav');
-      audioH.play();
-      break;
-    case 'j':
-      let audioJ = new Audio('sounds/snare.wav');
-      audioJ.play();
-      break;
-    case 'k':
-      let audioK = new Audio('sounds/tom.wav');
-      audioK.play();
-      break;
-    case 'l':
-      let audioL = new Audio('sounds/tink.wav');
-      audioL.play();
-      break;
-    default:
-      console.log("Another letter was pressed.");
-  }*/
+  setTimeout(function() {
+    myKey.classList.remove('playing');
+  }, 200);
+  moveKey(myKey);
 });
+
+function moveKey(key) {
+  const myLetter = key.getElementsByTagName('kbd')[0].innerHTML;
+  if (myKeyCounts[myLetter] > 8) {
+    myKeyCounts[myLetter] = 0;
+    resetKey(key);
+  } else {
+    myKeyCounts[myLetter]++;
+    moveDown(key, myLetter);
+  }
+}
+
+function moveDown(key, myLetter) {
+  let letterPosition = -10 * myKeyCounts[myLetter];
+  key.style.transform = "translateY(" + (-1 * letterPosition) + "px)";
+  console.log(myKeyCounts);
+  console.log("moved down");
+}
+
+function resetKey(key) {
+  key.style.transform = "translateY(0px)";
+  console.log("reset");
+  console.log(myKeyCounts);
+}
