@@ -66,7 +66,7 @@
     let audio = audios.find(a => a.dataset.key == e.keyCode);
     if (audio && key) {
       key.classList.add("playing");
-      let margin = key.style.marginTop ? parseInt(key.style.marginTop.replace("px", "")) : 10;
+      let margin = key.style.marginTop ? parseInt(key.style.marginTop.replace("px", "")) : 16;
       if (margin < 110) {
         margin += 10;
         key.style.marginTop = `${margin}px`;
