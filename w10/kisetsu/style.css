@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1em;
+    background-color: aliceblue;
+    color:rgb(61, 61, 61);
+}
+
+nav ul li {
+    list-style-type: none;
+}
+
+main {
+    margin: 0 auto;
+    text-align: center;
+}
+input {
+    margin-bottom: 1.5em;
+}
+
+button {
+    margin-bottom: 1.5em;
+    padding: .7em 3em;
+    border-radius: 3px;
+}
+#submit {
+    background-color: rgb(83, 146, 202);
+    color: white;
+    border: none;
+}
+#back {
+    border: black 1px solid;
+}
+#quakeList {
+    display: table;
+    margin: 2em auto 0 auto;
+}
+.list {
+    list-style-type: none;
+    border: black solid 1px;
+    padding: 1em;
+}
+li {
+    margin-bottom: 1em;
+    text-align: left;
+}
