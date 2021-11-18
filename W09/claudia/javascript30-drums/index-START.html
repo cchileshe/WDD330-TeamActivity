@@ -65,6 +65,8 @@
         // console.dir(audio.play());
         
         if(!audio) return; //stops the function from running all together
+
+        //reset audio to beininnig then play
         audio.currentTime = 0;
         audio.play();
         console.log(key);
@@ -75,6 +77,7 @@
         
 
 // Each time a key is pressed move the corresponding button down 10px.
+//10 modulus 100 = 10
     let offset = (Number(key.getAttribute("data-offset")) + 10) % 100
 
     
@@ -83,9 +86,10 @@
         console.log("offset: " + key.getAttribute("data-offset")) 
     
     });
-    //  Then remove it after the appropriate length of time. 
+   
     function removetransition(e) {
         if (e.propertyName !== 'transform') return; //skip it if it's not a transform
+        
         this.classList.remove('playing');
     }
     

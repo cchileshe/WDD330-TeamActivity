@@ -1,0 +1,41 @@
+  
+main {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+.quakeTitle {
+    font-size: large;
+    font-weight: bold;
+}
+
+.earthquake {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px dashed lightcoral;
+}
+
+form {
+    padding: 10px;
+}
+
+#radiusInput {
+    width: 50px;
+    border: 1px solid lightcoral;
+}
+
+#radiusSection {
+    padding: 10px;
+}
+
+.quakeStyles {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .quakeStyles li {
+    margin: 0.5em 0;
+  }
+  .quakeStyles div {
+    font-size: 0.8em;
+  }
