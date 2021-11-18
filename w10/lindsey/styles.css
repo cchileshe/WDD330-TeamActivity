@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+}
+
+header {
+  background-color:paleturquoise;
+  padding: 2em;
+}
+
+nav ul li {
+  list-style-type: none;
+}
+
+main {
+  margin: 2em;
+}
+
+h1 {
+  border-bottom: 3px solid black;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 2em;
+}
+
+main ul li {
+  list-style-type: number;
+  padding: 1em;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2em;
+  width: 550px;
+}
+
+main ul li:nth-child(odd) {
+  background-color: lightgrey;
+}
+
+#button {
+  background-color: linen;
+  color: black;
+  border: 3px outset grey;
+  padding: 10px;
+  display: block;
+  width: max-content;
+  margin-top: 2em;
+  margin-left: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+input {
+  margin: 10px;
+}

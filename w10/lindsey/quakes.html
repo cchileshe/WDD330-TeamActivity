@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+    <title>Local Quakes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <heading>
+          <label for="radius">Radius (km):</label>
+          <input type="number" name="radius" id="radius" value="100"><br>
+          <label for="startDate">Start Date:</label>
+          <input type="date" name="startDate" id="startDate" value="2020-01-01"><br>
+          <label for="endDate">End Date:</label>
+          <input type="date" name="endDate" id="endDate" value="2020-02-01">
+          <nav><ul id="mainNav"></ul></nav>
+        </heading>
+      </nav>
+    </header>
+    <main id="content">
+      <h1>Quake List</h1>
+      <ul id="quakeList"></ul>
+    </main>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>
