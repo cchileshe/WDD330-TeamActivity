@@ -1,0 +1,23 @@
+
+.hidden {
+  display: none;
+}
+
+h3 {
+  background-color: mediumturquoise;
+  padding: 10px;
+  display: block;
+  max-width: 300px;
+}
+
+form {
+  display: grid;
+}
+
+input, textarea {
+  max-width: 200px;
+}
+
+button {
+  max-width: 100px;
+}
