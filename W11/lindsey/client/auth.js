@@ -10,16 +10,13 @@ export default class Auth {
 
   async login(callback) {
     // replace the ids below with whatever you used in your form.
-    const postData = {
-      email: document.getElementById('username').value,
-      password: document.getElementById('password').value
-    };
-    /*const username = document.getElementById('username');
+    
+    const username = document.getElementById('username');
     const password = document.getElementById('password');
     const postData = {
       email: username.value,
       password: password.value  
-    };*/
+    };
     try {
       // 1. use the makeRequest function to pass our credentials to the server
       const myRequest = await makeRequest('login', 'POST', postData);
@@ -29,7 +26,8 @@ export default class Auth {
       
       // let's get the user details as well and store them locally in the class
       // you can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
-      this.user = await this.getCurrentUser(username.value);
+      this.user = await this.getCurrentUser(username);
+      console.log(this.user);
       // hide the login form.
       document.getElementById('login').classList.add('hidden');
       // clear the password
