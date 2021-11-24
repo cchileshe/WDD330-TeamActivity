@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 11</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="errors" class="errors" hidden></div>
+  <h1>Week 11</h1>
+  <div id="login">
+    <h2>Login</h2>
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br><br>
+      <label for="pass">Password:</label><br>
+      <input type="password" id="pass" name="pass"><br><br>
+      <button type="button" id="submitButton">Login</button>
+    </form>
+  </div>
+  <div id="content" hidden>
+    <h2>Posts</h2>
+    <ul id="posts"></ul>
+  </div>
+  <div id="createPost" hidden>
+    <h2>Create Post</h2>
+    <form>
+      <label for="title">Title:</label><br>
+      <input type="text" id="title" name="title"><br><br>
+      <label for="content1">Content:</label><br>
+      <input type="text" id="content1" name="content1"><br><br>
+      <button type="button" id="submitPostButton">Submit</button>
+    </form>
+  </div>
+  <script src="week11.js" type="module"></script>
+</body>
+</html>
